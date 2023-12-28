@@ -7,7 +7,7 @@ function App() {
   const [newNote, setNewNote] = useState("");
 
   const addNote = () => {
-    if(newNote.trim() !== ''){
+    if(newNote !== ''){
       setNotes([...notes, newNote]);
       setNewNote('');
     }
@@ -19,12 +19,17 @@ function App() {
     setNotes(updatedNotes);
   }
 
+  const clearNotes = () => {
+    setNotes([]);
+  }
+
   return (
     <div>
       <h1>Notter.io</h1>
       <div>
         <input type="text" placeholder="Enter a new note..." value={newNote} onChange={(e) => setNewNote(e.target.value)}/>
         <button onClick={addNote}>Add Note</button>
+        <button onClick={clearNotes}>Clear Notes</button>
       </div>
       <ul>
         {notes.map((noteText, index) => (
